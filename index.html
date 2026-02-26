@@ -1,0 +1,284 @@
+<!DOCTYPE index.html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HADASSA IA - Automação Profissional no MT5</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0A84FF;
+            --secondary: #00C853;
+            --bg-dark: #050505;
+            --card-bg: rgba(255, 255, 255, 0.07);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.8)), 
+                url('1000068294.png'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: var(--bg-dark);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 120px 20px;
+            background: radial-gradient(circle at center, rgba(10, 132, 255, 0.15), transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 64px);
+            font-weight: 900;
+            margin: 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 20px auto;
+            font-size: 20px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* BOTÕES */
+        .btn {
+            display: inline-block;
+            padding: 20px 50px;
+            border-radius: 50px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: #fff;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 200, 83, 0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 45px rgba(0, 200, 83, 0.5);
+        }
+
+        /* SEÇÕES */
+        .section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        /* GRID E CARDS */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .card i { font-size: 40px; margin-bottom: 15px; display: block; }
+
+        /* DESTAQUES */
+        .highlight { color: var(--secondary); font-weight: 700; }
+
+        /* PROVA SOCIAL */
+        .prova {
+            background: rgba(10, 132, 255, 0.05);
+            padding: 60px 20px;
+            border-top: 1px solid rgba(10, 132, 255, 0.2);
+            border-bottom: 1px solid rgba(10, 132, 255, 0.2);
+            text-align: center;
+        }/* FAQ */
+        .faq-container { max-width: 800px; margin: auto; }
+        .faq-item {
+            background: rgba(255,255,255,0.05);
+            margin-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            opacity: 0.8;
+            font-size: 15px;
+            background: rgba(0,0,0,0.2);
+        }
+
+        /* GARANTIA */
+        .garantia {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(transparent, rgba(0, 200, 83, 0.05));
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 12px;
+            opacity: 0.5;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>HADASSA IA</h1>
+    <p>O Robô que Opera a estratégia FIMATHE com <strong>precisão matemática</strong> no MetaTrader 5.</p>
+    <a href="https://pay.hotmart.com/I104582582H" class="btn">QUERO ACESSO IMEDIATO</a>
+</section>
+
+<section class="section">
+    <h2>Por que você ainda não é consistente?</h2>
+    <div class="grid">
+        <div class="card">
+            <span style="font-size:30px">🧠</span>
+            <h3>Viés Emocional</h3>
+            <p>O medo de perder ou a ganância de ganhar fazem você sair antes da hora ou hesitar na entrada.</p>
+        </div>
+        <div class="card">
+            <span style="font-size:30px">📉</span>
+            <h3>Indicadores Atrasados</h3>
+            <p>As vezes aparece a oportunidade mas você não consegue entrar. O Hadassa IA lê a <strong>estrutura FIMATHE e age no momento certo sem precisar você estar presente.</strong>.</p>
+        </div>
+        <div class="card">
+            <span style="font-size:30px">⏳</span>
+            <h3>Falta de Tempo</h3>
+            <p>Você não precisa ficar 8h na frente da tela. O robô monitora o mercado para você 24/5.</p>
+        </div>
+    </div>
+</section>
+
+<section class="prova">
+    <h2>A Técnica mais lucrativa do Mercado</h2>
+    <p>O Hadassa IA baseia-se 100% na estratégia FIMATHE.</p>
+    <div class="grid" style="margin-top: 30px;">
+        <div class="card">Canal de Abertura</div>
+        <div class="card">Expansão Ciclo 1</div>
+        <div class="card">Take de 1 ou 2 níveis</div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>O que você recebe ao entrar hoje:</h2>
+    <div class="grid">
+        <div class="card" style="border-left: 4px solid var(--secondary);">
+            <h3>Softare Hadassa IA</h3>
+            <p>Licença completa e sem limitações de contas!</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--secondary);">
+            <h3>Setups Otimizados</h3>
+            <p>Configurações testadas para os principais ativos e timeframes.</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--secondary);">
+            <h3>Comunidade & Suporte</h3>
+            <p>Acesso ao grupo de membros e suporte técnico para instalação e futuras atualizações.</p>
+        </div>
+    </div>
+</section>
+
+<section class="garantia">
+    <img src="https://cdn-icons-png.flaticon.com/512/1055/1055201.png" width="80" alt="Garantia" style="filter: invert(1); margin-bottom: 20px;">
+    <h2>Risco Zero: 7 Dias de Garantia</h2>
+    <p>Teste o Hadassa IA. Se não se adaptar à metodologia, devolvemos seu investimento integralmente.</p>
+</section><section class="section">
+    <h2>Dúvidas Frequentes</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">O robô funciona em qualquer corretora? <span>+</span></div>
+            <div class="faq-answer">Sim, desde que a corretora ofereça suporte à plataforma MetaTrader 5 (MT5).</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Em quantas contas terei a licença? <span>+</span></div>
+            <div class="faq-answer">Não existe limites de contas, o Robô é aberto sem bloqueio opere quantas contas quiser.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">O acesso é vitalício? <span>+</span></div>
+            <div class="faq-answer">O acesso é vitalício, você só paga uma vez e é seu sem custos adicionais.</div>
+        </div>
+    </div>
+</section>
+
+<div class="hero" id="preço" style="padding: 60px 20px;">
+    <p>Comece a operar ainda hoje e elimine a responsabilidade de esperar o momento certo de entrar.</p>
+    <a href="https://pay.hotmart.com/I104582582H" class="btn" style="background: var(--secondary);">GARANTIR MINHA VAGA</a>
+</div>
+
+<footer>
+    <p>&copy; 2024 HADASSA IA - Todos os direitos reservados.</p>
+    <p style="max-width: 600px; margin: 10px auto;">Aviso Legal: Negociar ativos financeiros envolve riscos. Resultados passados não garantem lucros futuros. Opere com responsabilidade.</p>
+</footer>
+
+<script>
+    // Script para o FAQ interativo
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            const answer = item.querySelector('.faq-answer');
+            const isOpen = item.classList.contains('active');
+
+            // Fecha todos os outros
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('active');
+                i.querySelector('.faq-answer').style.maxHeight = '0';
+                i.querySelector('.faq-answer').style.padding = '0 20px';
+            });
+
+            if (!isOpen) {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                answer.style.padding = '15px 20px';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
