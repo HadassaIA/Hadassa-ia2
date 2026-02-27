@@ -1,290 +1,423 @@
-<!DOCTYPE index.html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HADASSA IA - Automação Profissional no MT5</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Orbitron:wght@500&display=swap" rel="stylesheet">
-
+    <meta name="description" content="Robô de automação que opera a estratégia FIMATHE com precisão matemática no MetaTrader 5.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
         :root {
             --primary: #0A84FF;
             --secondary: #00C853;
-            --bg-dark: #050505;
-            --card-bg: rgba(255, 255, 255, 0.07);
+            --bg: #050505;
+            --fg: #f2f2f2;
+            --muted: #8a8a9a;
+            --glass-bg: rgba(255,255,255,0.06);
+            --glass-border: rgba(255,255,255,0.08);
+            --glass-hover: rgba(255,255,255,0.12);
+            --gradient: linear-gradient(135deg, #0A84FF, #00C853);
+            --shadow-glow: 0 10px 40px rgba(0,200,83,0.25);
+            --shadow-glow-hover: 0 15px 50px rgba(0,200,83,0.4);
         }
 
         body {
-            margin: 0;
             font-family: 'Montserrat', sans-serif;
-            color: #fff;
+            background: var(--bg);
+            color: var(--fg);
             overflow-x: hidden;
-            background-image: 
-                linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.8)), 
-                url('1000068294.png'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-color: var(--bg-dark);
+            line-height: 1.6;
         }
 
-        /* HERO SECTION */
-        .hero {
-            text-align: center;
-            padding: 120px 20px;
-            background: radial-gradient(circle at center, rgba(10, 132, 255, 0.15), transparent 70%);
-        }
+        h1, h2, h3 { font-family: 'Orbitron', sans-serif; }
 
-        .hero h1 {
-            font-size: clamp(40px, 8vw, 64px);
-            font-weight: 900;
-            margin: 0;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        .text-gradient {
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -2px;
+            background-clip: text;
         }
 
-        .hero p {
-            max-width: 700px;
-            margin: 20px auto;
-            font-size: 20px;
-            line-height: 1.6;
-            opacity: 0.9;
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            background: var(--glass-hover);
+            border-color: rgba(10,132,255,0.3);
+            transform: translateY(-6px);
         }
 
-        /* BOTÕES */
-        .btn {
+        .btn-gradient {
             display: inline-block;
-            padding: 20px 50px;
+            padding: 20px 48px;
             border-radius: 50px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: var(--gradient);
             color: #fff;
             font-weight: 800;
             text-decoration: none;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0, 200, 83, 0.3);
+            letter-spacing: 2px;
+            font-size: 14px;
+            box-shadow: var(--shadow-glow);
+            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
         }
-
-        .btn:hover {
+        .btn-gradient:hover {
             transform: scale(1.05);
-            box-shadow: 0 15px 45px rgba(0, 200, 83, 0.5);
+            box-shadow: var(--shadow-glow-hover);
         }
 
-        /* SEÇÕES */
-        .section {
-            padding: 80px 20px;
-            max-width: 1100px;
-            margin: auto;
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 20px 48px;
+            border-radius: 50px;
+            border: 1px solid rgba(0,200,83,0.5);
+            color: var(--secondary);
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: transparent;
         }
+        .btn-outline:hover { background: rgba(0,200,83,0.1); }
 
-        h2 {
+        /* TEST BANNER */
+        .test-banner {
+            max-width: 800px;
+            margin: 24px auto 0;
+            padding: 40px;
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 40px;
+        }
+        .test-banner h3 { font-size: 20px; margin-bottom: 8px; }
+        .test-banner p { color: var(--muted); margin-bottom: 20px; }
+        .test-banner .btn-test {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            background: var(--secondary);
             color: #fff;
-        }
-
-        /* GRID E CARDS */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            backdrop-filter: blur(15px);
-            transition: 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .card i { font-size: 40px; margin-bottom: 15px; display: block; }
-
-        /* DESTAQUES */
-        .highlight { color: var(--secondary); font-weight: 700; }
-
-        /* PROVA SOCIAL */
-        .prova {
-            background: rgba(10, 132, 255, 0.05);
-            padding: 60px 20px;
-            border-top: 1px solid rgba(10, 132, 255, 0.2);
-            border-bottom: 1px solid rgba(10, 132, 255, 0.2);
-            text-align: center;
-        }/* FAQ */
-        .faq-container { max-width: 800px; margin: auto; }
-        .faq-item {
-            background: rgba(255,255,255,0.05);
-            margin-bottom: 10px;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .faq-question {
-            padding: 20px;
-            cursor: pointer;
             font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+        .test-banner .btn-test:hover { transform: scale(1.05); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 24px;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(10,132,255,0.12), transparent 70%);
+        }
+        .hero h1 {
+            font-size: clamp(48px, 10vw, 96px);
+            font-weight: 900;
+            letter-spacing: -3px;
+            margin-bottom: 24px;
+        }
+        .hero p {
+            font-size: clamp(18px, 3vw, 24px);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        .hero strong.highlight { color: var(--secondary); }
+
+        /* SECTIONS */
+        .section { padding: 96px 24px; max-width: 1100px; margin: auto; }
+        .section h2 { text-align: center; font-size: clamp(28px, 5vw, 40px); margin-bottom: 64px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+
+        .card { padding: 32px; text-align: center; }
+        .card .icon { font-size: 40px; margin-bottom: 16px; display: block; }
+        .card h3 { font-size: 18px; margin-bottom: 12px; }
+        .card p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+        /* STRATEGY */
+        .strategy-section {
+            padding: 96px 24px;
+            border-top: 1px solid rgba(10,132,255,0.1);
+            border-bottom: 1px solid rgba(10,132,255,0.1);
+            background: rgba(10,132,255,0.03);
+        }
+        .strategy-section h2 { text-align: center; font-size: clamp(28px, 5vw, 40px); margin-bottom: 16px; }
+        .strategy-section > p { text-align: center; color: var(--muted); font-size: 18px; margin-bottom: 48px; }
+        .strategy-section .step-num {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .strategy-card {
+            padding: 32px 24px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(10,132,255,0.85);
+        }
+
+        /* BENEFITS */
+        .benefit-card {
+            border-left: 4px solid var(--secondary) !important;
+            text-align: left;
+        }
+
+        /* GUARANTEE */
+        .guarantee {
+            padding: 96px 24px;
+            text-align: center;
+            background: linear-gradient(transparent, rgba(0,200,83,0.04));
+        }
+        .guarantee .shield {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            color: var(--secondary);
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        .guarantee h2 { font-size: clamp(28px, 5vw, 40px); margin-bottom: 24px; }
+        .guarantee p { color: var(--muted); font-size: 18px; max-width: 600px; margin: 0 auto; }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* FAQ */
+        .faq { max-width: 800px; margin: auto; }
+        .faq-item { margin-bottom: 12px; overflow: hidden; }
+        .faq-question {
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 24px;
+            background: none;
+            border: none;
+            color: var(--fg);
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.3s;
         }
+        .faq-question:hover { color: rgba(10,132,255,0.85); }
+        .faq-question .arrow {
+            transition: transform 0.3s;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .faq-item.active .arrow { transform: rotate(180deg); }
         .faq-answer {
-            padding: 0 20px;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease, padding 0.3s ease;
-            opacity: 0.8;
-            font-size: 15px;
-            background: rgba(0,0,0,0.2);
+            color: var(--muted);
+            font-size: 14px;
+            padding: 0 24px;
+            line-height: 1.7;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 24px 20px;
         }
 
-        /* GARANTIA */
-        .garantia {
+        /* CTA */
+        .cta {
+            padding: 96px 24px;
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(transparent, rgba(0, 200, 83, 0.05));
+            background: radial-gradient(circle at center, rgba(10,132,255,0.12), transparent 70%);
         }
+        .cta p { font-size: clamp(18px, 3vw, 22px); opacity: 0.9; margin-bottom: 32px; max-width: 700px; margin-left: auto; margin-right: auto; margin-bottom: 32px; }
+        .cta-buttons { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
 
+        /* FOOTER */
         footer {
+            padding: 40px 24px;
             text-align: center;
-            padding: 40px;
-            font-size: 12px;
-            opacity: 0.5;
             border-top: 1px solid rgba(255,255,255,0.05);
         }
+        footer p { color: var(--muted); font-size: 12px; opacity: 0.6; }
+        footer p + p { margin-top: 8px; max-width: 500px; margin-left: auto; margin-right: auto; }
 
+        /* ANIMATIONS */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
-<section class="section" style="text-align: center; background: rgba(255,255,255,0.05); padding: 40px 20px; border-radius: 15px; margin: 20px auto; max-width: 800px;">
+
+<!-- TEST BANNER -->
+<div class="test-banner glass-card fade-up">
     <h3>Quer ver a inteligência na prática?</h3>
     <p>Chame nossa equipe agora e peça um teste demonstrativo do Hadassa IA.</p>
-    <a href="https://wa.me/5522988102360?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20o%20teste%20do%20Rob%C3%B4%20Hadassa%20IA" 
-       target="_blank" 
-       class="btn" 
-       style="background: #25D366; color: white; text-decoration: none; display: inline-block; margin-top: 15px;">
-       🧪 TESTAR O ROBÔ AGORA
-    </a>
-    
+    <a href="https://wa.me/5522988102360?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20o%20teste%20do%20Rob%C3%B4%20Hadassa%20IA" target="_blank" class="btn-test">💬 Testar o Robô Agora</a>
+</div>
+
+<!-- HERO -->
 <section class="hero">
-    <h1>HADASSA IA</h1>
-    <p>O Robô que Opera a estratégia FIMATHE com <strong>precisão matemática</strong> no MetaTrader 5.</p>
-    <a href="https://pay.hotmart.com/I104582582H" class="btn">QUERO ACESSO IMEDIATO</a>
+    <div>
+        <h1 class="text-gradient fade-up">HADASSA IA</h1>
+        <p class="fade-up">O Robô que opera a estratégia <strong class="highlight">FIMATHE</strong> com <strong>precisão matemática</strong> no MetaTrader 5.</p>
+        <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="btn-gradient fade-up">Quero Acesso Imediato</a>
+    </div>
 </section>
 
+<!-- PROBLEMS -->
 <section class="section">
-    <h2>Por que você ainda não é consistente?</h2>
+    <h2 class="fade-up">Por que você ainda não é consistente?</h2>
     <div class="grid">
-        <div class="card">
-            <span style="font-size:30px">🧠</span>
+        <div class="glass-card card fade-up">
+            <span class="icon">🧠</span>
             <h3>Viés Emocional</h3>
             <p>O medo de perder ou a ganância de ganhar fazem você sair antes da hora ou hesitar na entrada.</p>
         </div>
-        <div class="card">
-            <span style="font-size:30px">📉</span>
+        <div class="glass-card card fade-up">
+            <span class="icon">📉</span>
             <h3>Indicadores Atrasados</h3>
-            <p>As vezes aparece a oportunidade mas você não consegue entrar. O Hadassa IA lê a <strong>estrutura FIMATHE e age no momento certo sem precisar você estar presente.</strong>.</p>
+            <p>A oportunidade aparece mas você não consegue entrar. O Hadassa IA lê a estrutura FIMATHE e age no momento certo.</p>
         </div>
-        <div class="card">
-            <span style="font-size:30px">⏳</span>
+        <div class="glass-card card fade-up">
+            <span class="icon">⏳</span>
             <h3>Falta de Tempo</h3>
             <p>Você não precisa ficar 8h na frente da tela. O robô monitora o mercado para você 24/5.</p>
         </div>
     </div>
 </section>
 
-<section class="prova">
-    <h2>A Técnica mais lucrativa do Mercado</h2>
-    <p>O Hadassa IA baseia-se 100% na estratégia FIMATHE.</p>
-    <div class="grid" style="margin-top: 30px;">
-        <div class="card">Canal de Abertura</div>
-        <div class="card">Expansão Ciclo 1</div>
-        <div class="card">Take de 1 ou 2 níveis</div>
+<!-- STRATEGY -->
+<section class="strategy-section">
+    <div style="max-width:1100px;margin:auto;">
+        <h2 class="fade-up">A Técnica Mais Lucrativa do Mercado</h2>
+        <p class="fade-up">O Hadassa IA baseia-se 100% na estratégia <strong style="color:var(--secondary);">FIMATHE</strong>.</p>
+        <div class="grid">
+            <div class="glass-card strategy-card fade-up">
+                <span class="step-num text-gradient">01</span>
+                Canal de Abertura
+            </div>
+            <div class="glass-card strategy-card fade-up">
+                <span class="step-num text-gradient">02</span>
+                Expansão Ciclo 1
+            </div>
+            <div class="glass-card strategy-card fade-up">
+                <span class="step-num text-gradient">03</span>
+                Take de 1 ou 2 níveis
+            </div>
+        </div>
     </div>
 </section>
 
+<!-- BENEFITS -->
 <section class="section">
-    <h2>O que você recebe ao entrar hoje:</h2>
+    <h2 class="fade-up">O que você recebe ao entrar hoje</h2>
     <div class="grid">
-        <div class="card" style="border-left: 4px solid var(--secondary);">
-            <h3>Softare Hadassa IA</h3>
+        <div class="glass-card card benefit-card fade-up">
+            <h3>Software Hadassa IA</h3>
             <p>Licença completa e sem limitações de contas!</p>
         </div>
-        <div class="card" style="border-left: 4px solid var(--secondary);">
+        <div class="glass-card card benefit-card fade-up">
             <h3>Setups Otimizados</h3>
             <p>Configurações testadas para os principais ativos e timeframes.</p>
         </div>
-        <div class="card" style="border-left: 4px solid var(--secondary);">
+        <div class="glass-card card benefit-card fade-up">
             <h3>Comunidade & Suporte</h3>
-            <p>Acesso ao grupo de membros e suporte técnico para instalação e futuras atualizações.</p>
+            <p>Acesso ao grupo de membros e suporte técnico para instalação e atualizações.</p>
         </div>
     </div>
 </section>
 
-<section class="garantia">
-    <img src="https://cdn-icons-png.flaticon.com/512/1055/1055201.png" width="80" alt="Garantia" style="filter: invert(1); margin-bottom: 20px;">
-    <h2>Risco Zero: 7 Dias de Garantia</h2>
-    <p>Teste o Hadassa IA. Se não se adaptar à metodologia, devolvemos seu investimento integralmente.</p>
-</section><section class="section">
-    <h2>Dúvidas Frequentes</h2>
-    <div class="faq-container">
-        <div class="faq-item">
-            <div class="faq-question">O robô funciona em qualquer corretora? <span>+</span></div>
+<!-- GUARANTEE -->
+<section class="guarantee">
+    <div class="fade-up">
+        <svg class="shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <h2>Risco Zero: 7 Dias de Garantia</h2>
+        <p>Teste o Hadassa IA. Se não se adaptar à metodologia, devolvemos seu investimento integralmente.</p>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+    <h2 class="fade-up">Dúvidas Frequentes</h2>
+    <div class="faq">
+        <div class="faq-item glass-card fade-up">
+            <button class="faq-question">O robô funciona em qualquer corretora? <span class="arrow">▾</span></button>
             <div class="faq-answer">Sim, desde que a corretora ofereça suporte à plataforma MetaTrader 5 (MT5).</div>
         </div>
-        <div class="faq-item">
-            <div class="faq-question">Em quantas contas terei a licença? <span>+</span></div>
-            <div class="faq-answer">Não existe limites de contas, o Robô é aberto sem bloqueio opere quantas contas quiser.</div>
+        <div class="faq-item glass-card fade-up">
+            <button class="faq-question">Em quantas contas terei a licença? <span class="arrow">▾</span></button>
+            <div class="faq-answer">Não existe limite de contas. O Robô é aberto sem bloqueio — opere quantas contas quiser.</div>
         </div>
-        <div class="faq-item">
-            <div class="faq-question">O acesso é vitalício? <span>+</span></div>
-            <div class="faq-answer">O acesso é vitalício, você só paga uma vez e é seu sem custos adicionais.</div>
+        <div class="faq-item glass-card fade-up">
+            <button class="faq-question">O acesso é vitalício? <span class="arrow">▾</span></button>
+            <div class="faq-answer">Sim! Você só paga uma vez e é seu para sempre, sem custos adicionais.</div>
         </div>
     </div>
 </section>
 
-<div class="hero" id="preço" style="padding: 60px 20px;">
-    <p>Comece a operar ainda hoje e elimine a responsabilidade de esperar o momento certo de entrar.</p>
-    <a href="https://pay.hotmart.com/I104582582H" class="btn" style="background: var(--secondary);">GARANTIR MINHA VAGA</a>
-</div>
+<!-- CTA -->
+<section class="cta">
+    <p class="fade-up">Comece a operar ainda hoje e elimine a responsabilidade de esperar o momento certo de entrar.</p>
+    <div class="cta-buttons fade-up">
+        <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="btn-gradient">Garantir Minha Vaga</a>
+        <a href="https://wa.me/5522988102360?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20o%20teste%20do%20Rob%C3%B4%20Hadassa%20IA" target="_blank" class="btn-outline">🧪 Testar o Robô</a>
+    </div>
+</section>
 
+<!-- FOOTER -->
 <footer>
-    <p>&copy; 2024 HADASSA IA - Todos os direitos reservados.</p>
-    <p style="max-width: 600px; margin: 10px auto;">Aviso Legal: Negociar ativos financeiros envolve riscos. Resultados passados não garantem lucros futuros. Opere com responsabilidade.</p>
+    <p>&copy; 2024 HADASSA IA — Todos os direitos reservados.</p>
+    <p>Aviso Legal: Negociar ativos financeiros envolve riscos. Resultados passados não garantem lucros futuros. Opere com responsabilidade.</p>
 </footer>
 
 <script>
-    // Script para o FAQ interativo
-    document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', () => {
-            const item = question.parentElement;
-            const answer = item.querySelector('.faq-answer');
-            const isOpen = item.classList.contains('active');
-
-            // Fecha todos os outros
-            document.querySelectorAll('.faq-item').forEach(i => {
-                i.classList.remove('active');
-                i.querySelector('.faq-answer').style.maxHeight = '0';
-                i.querySelector('.faq-answer').style.padding = '0 20px';
-            });
-
-            if (!isOpen) {
-                item.classList.add('active');
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-                answer.style.padding = '15px 20px';
+    // Scroll reveal animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
             }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            const wasActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            if (!wasActive) item.classList.add('active');
         });
     });
 </script>
