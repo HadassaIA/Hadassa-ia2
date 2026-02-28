@@ -1,330 +1,399 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HADASSA IA - Automação Profissional FIMATHE no MT5</title>
     <meta name="description" content="Domine o mercado com o Hadassa IA. Automação precisa da estratégia FIMATHE para MetaTrader 5 com gerenciamento de risco avançado.">
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                        accent: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        blue: { 500: '#0A84FF', 600: '#0070E0' },
+                        emerald: { 500: '#00C853', 600: '#00A344' },
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-            --primary: #00F2FF; 
-            --secondary: #00C853; 
-            --bg: #050505;
-            --fg: #f2f2f2;
-            --muted: #a1a1aa;
-            --glass-bg: rgba(255,255,255,0.05);
-            --glass-border: rgba(255,255,255,0.1);
-            --gradient: linear-gradient(135deg, #0095ff, #00d981); /* Gradiente da foto */
-            --shadow-glow: 0 0 20px rgba(0, 149, 255, 0.3);
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--bg);
-            color: var(--fg);
-            overflow-x: hidden;
-            line-height: 1.6;
-            scroll-behavior: smooth;
-            padding-top: 80px; 
-        }
-
-        /* --- HEADER FIXO --- */
-        .header-fixo {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: #050505;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            z-index: 9999;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .icon-chip {
-            width: 45px;
-            height: 45px;
-            background: var(--gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 15px rgba(0, 149, 255, 0.3);
-        }
-
-        .logo-text-header {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 22px;
-            color: #ffffff;
-            letter-spacing: 1px;
-        }
-
-        .logo-text-header span {
-            color: #0095ff;
-        }
-
-        .btn-header {
-            background: #ffffff;
-            color: #000000;
-            text-decoration: none;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 14px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
-
-        .btn-header:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 60px 24px;
-            background: 
-                radial-gradient(circle at 50% 0%, rgba(0, 149, 255, 0.15), transparent 50%),
-                linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.85)),
-                url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
-        }
-
-        /* Badge azul acima do título */
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 30px;
-            border-radius: 100px;
-            border: 1px solid rgba(0, 149, 255, 0.5);
-            background: rgba(0, 149, 255, 0.05);
-            margin-bottom: 30px;
-            color: #0095ff;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .hero h1 { 
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(45px, 9vw, 95px); 
-            line-height: 1; 
-            margin-bottom: 25px; 
-            color: #fff;
-            font-weight: 900;
-        }
-
-        .text-gradient-ia {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p { font-size: clamp(18px, 2.2vw, 24px); margin-bottom: 45px; color: #ccc; max-width: 700px; margin-left: auto; margin-right: auto; }
-
-        /* --- COMPONENTES GERAIS --- */
-        .section { padding: 100px 24px; max-width: 1200px; margin: auto; }
-        .section-title { text-align: center; margin-bottom: 60px; font-size: clamp(30px, 5vw, 45px); font-family: 'Orbitron', sans-serif; font-weight: 900; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        
-        .glass-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(12px);
-            border-radius: 24px;
-            transition: all 0.3s ease;
-            padding: 45px;
-        }
-
-        .btn-gradient {
-            display: inline-block;
-            padding: 20px 45px;
-            border-radius: 50px;
-            background: var(--gradient);
-            color: #fff;
-            font-weight: 800;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 14px;
-            box-shadow: var(--shadow-glow);
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-gradient:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0, 149, 255, 0.5); }
-
-        /* Tabela Comparativa */
-        .comparison-wrapper { overflow-x: auto; margin-top: 20px; border-radius: 20px; border: 1px solid var(--glass-border); }
-        .comp-table { width: 100%; border-collapse: collapse; text-align: left; background: var(--glass-bg); }
-        .comp-table th, .comp-table td { padding: 22px; border-bottom: 1px solid var(--glass-border); }
-        .comp-table th { background: rgba(255, 255, 255, 0.05); color: #0095ff; font-size: 13px; text-transform: uppercase; }
-        .check-yes { color: var(--secondary); font-weight: 700; }
-        .check-no { color: #ff4444; opacity: 0.8; }
-
-        /* FAQ */
-        .faq { max-width: 850px; margin: auto; }
-        .faq-item { margin-bottom: 15px; overflow: hidden; }
-        .faq-question {
-            width: 100%; padding: 25px; background: none; border: none;
-            color: #fff; text-align: left; font-weight: 700; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center; font-size: 18px;
-        }
-        .faq-answer { max-height: 0; overflow: hidden; transition: all 0.4s ease; padding: 0 25px; color: var(--muted); }
-        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 30px; }
-
-        .float-wa { position: fixed; bottom: 30px; right: 30px; z-index: 1000; background: #25D366; color: white; padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
-
-        footer { padding: 80px 24px; text-align: center; border-top: 1px solid var(--glass-border); background: #020202; font-size: 13px; color: #666; }
-
-        .fade-up { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        body { background-color: #050505; color: #f4f4f5; }
+        .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.21, 0.47, 0.32, 0.98); }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .text-gradient { background: linear-gradient(to right, #0A84FF, #00C853); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .bg-gradient-main { background: linear-gradient(135deg, #0A84FF, #00C853); }
+        .glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px); }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #18181b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #27272a; }
 
-        @media (max-width: 768px) {
-            .header-fixo { padding: 0 3%; }
-            .hero h1 { font-size: 55px; }
-            .hero-badge { font-size: 11px; padding: 10px 20px; }
-        }
+        /* FAQ Transition */
+        .faq-answer { transition: max-height 0.3s ease-out, opacity 0.3s ease-out; }
     </style>
 </head>
-<body>
+<body class="selection:bg-blue-500/30 overflow-x-hidden">
 
-<header class="header-fixo">
-    <div class="logo-container">
-        <div class="icon-chip">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
-        </div>
-        <div class="logo-text-header">HADASSA <span>IA</span></div>
-    </div>
-    <a href="https://pay.hotmart.com/I104582582H" class="btn-header">ACESSAR AGORA</a>
-</header>
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+                    <i data-lucide="cpu" class="w-6 h-6 text-white"></i>
+                </div>
+                <span class="font-display font-black text-xl tracking-tighter text-white uppercase">HADASSA <span class="text-blue-500">IA</span></span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+                <a href="#features" class="hover:text-white transition-colors">Vantagens</a>
+                <a href="#comparison" class="hover:text-white transition-colors">Comparativo</a>
+                <a href="#methodology" class="hover:text-white transition-colors">Metodologia</a>
+                <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+            </div>
 
-<a href="https://wa.me/5522988102360?text=Quero+testar+o+Hadassa+IA" class="float-wa" target="_blank">
-    <span>💬 Testar Grátis</span>
-</a>
+            <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="px-6 py-2.5 rounded-full bg-white text-black text-sm font-bold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95">
+                ACESSAR AGORA
+            </a>
+        </div>
+    </nav>
 
-<section class="hero">
-    <div class="hero-content fade-up">
-        <div class="hero-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Automação Profissional MT5
-        </div>
-        <h1>HADASSA <span class="text-gradient-ia">IA</span></h1>
-        <p>A precisão matemática da estratégia <strong>FIMATHE</strong> unida à tecnologia de ponta. Opere no MT5 com 100% de automação.</p>
-        <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="btn-gradient">Quero Acesso Imediato</a>
-        <div class="trust-badges" style="display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; margin-top: 40px; color: var(--secondary); font-weight: 600;">
-            <span>🛡️ Garantia de 7 Dias</span>
-            <span>⚡ Acesso Vitalício</span>
-            <span>🔓 Sem limite de Conta</span>
-        </div>
-    </div>
-</section>
+    <a href="https://wa.me/5522988102360?text=Quero+testar+o+Hadassa+IA" target="_blank" class="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-6 py-4 rounded-full bg-[#25D366] text-white font-bold shadow-2xl shadow-green-500/20 hover:scale-110 transition-transform">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+        <span>Testar Grátis</span>
+    </a>
 
-<section class="section">
-    <h2 class="section-title fade-up">Por que os Traders falham?</h2>
-    <div class="grid">
-        <div class="glass-card fade-up">
-            <span style="font-size: 50px; display: block; margin-bottom: 25px;">🧠</span>
-            <h3>Psicológico</h3>
-            <p>O medo de perder faz o humano hesitar. O Hadassa IA não tem sentimentos: ele apenas executa.</p>
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(10,132,255,0.15),transparent_50%)]"></div>
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1611974717483-36009bc7376c?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/50 to-[#050505]"></div>
         </div>
-        <div class="glass-card fade-up">
-            <span style="font-size: 50px; display: block; margin-bottom: 25px;">⌛</span>
-            <h3>Tempo Real</h3>
-            <p>Você não consegue estar na frente do gráficos no momento de executar a ordem. O robô faz isso 24 horas por dia.</p>
-        </div>
-        <div class="glass-card fade-up">
-            <span style="font-size: 50px; display: block; margin-bottom: 25px;">🎯</span>
-            <h3>Cálculo Preciso</h3>
-            <p>Traçar canais e expansões manualmente gera erros. Na IA, a precisão é milimétrica.</p>
-        </div>
-    </div>
-</section>
 
-<section class="section" style="background: rgba(255,255,255,0.02); border-radius: 50px;">
-    <h2 class="section-title fade-up">Humano vs. Hadassa IA</h2>
-    <div class="comparison-wrapper fade-up">
-        <table class="comp-table">
-            <thead>
-                <tr>
-                    <th>Funcionalidade</th>
-                    <th>Trader Manual</th>
-                    <th>Hadassa IA</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Cálculo de Canais Fimathe</td><td class="check-no">Impreciso / Lento</td><td class="check-yes">✅ Instantâneo</td></tr>
-                <tr><td>Operação com fechamento fora do C1</td><td class="check-no">Risco de erro</td><td class="check-yes">✅ Proteção Automática</td></tr>
-                <tr><td>Monitoramento 24/5</td><td class="check-no">Impossível</td><td class="check-yes">✅ 100% do Tempo</td></tr>
-                <tr><td>Gerenciamento de Risco</td><td class="check-no">Falho</td><td class="check-yes">✅ Rígido e Matemático</td></tr>
-                <tr><td>Execução de Break Even</td><td class="check-no">Atrasado</td><td class="check-yes">✅ No Momento Certo</td></tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+            <div class="fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-xs font-bold tracking-widest uppercase mb-8">
+                <i data-lucide="zap" class="w-3 h-3"></i>
+                Automação Profissional MT5
+            </div>
+            
+            <h1 class="fade-up text-6xl md:text-8xl lg:text-9xl font-display font-black tracking-tighter leading-[0.9] mb-8 uppercase" style="transition-delay: 100ms;">
+                HADASSA <span class="text-gradient">IA</span>
+            </h1>
 
-<section class="section">
-    <h2 class="section-title fade-up">Perguntas Frequentes</h2>
-    <div class="faq">
-        <div class="faq-item glass-card fade-up" style="padding:0; margin-bottom: 15px;">
-            <button class="faq-question">Funciona em quais ativos? <span style="color: #0095ff;">▼</span></button>
-            <div class="faq-answer">Qualquer ativo disponível no MetaTrader 5: HK50, Ouro (XAUUSD), Índices, Forex e B3.</div>
+            <p class="fade-up text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-12 leading-relaxed font-accent" style="transition-delay: 200ms;">
+                A precisão matemática da estratégia <strong class="text-white">FIMATHE</strong> unida à tecnologia de ponta. Opere no MT5 com 100% de automação.
+            </p>
+
+            <div class="fade-up mb-8 flex flex-col items-center" style="transition-delay: 250ms;">
+                <span class="text-zinc-500 text-sm line-through tracking-widest uppercase mb-1">De R$ 497,00 por apenas</span>
+                <div class="flex items-baseline gap-2">
+                    <span class="text-white text-2xl font-bold italic">R$</span>
+                    <span class="text-6xl md:text-7xl font-display font-black text-white tracking-tighter">247,00</span>
+                </div>
+                <span class="text-emerald-500 text-xs font-bold tracking-[0.2em] uppercase mt-2">Pagamento Único • Acesso Vitalício</span>
+            </div>
+
+            <div class="fade-up flex flex-col sm:flex-row items-center justify-center gap-6" style="transition-delay: 300ms;">
+                <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="group relative px-10 py-5 rounded-full bg-gradient-main text-white font-black text-lg shadow-2xl shadow-blue-500/25 hover:scale-105 transition-all flex items-center gap-2">
+                    QUERO ACESSO IMEDIATO
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <div class="fade-up mt-16 flex flex-wrap items-center justify-center gap-8 text-xs font-bold text-zinc-500 uppercase tracking-widest" style="transition-delay: 400ms;">
+                <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i> Garantia de 7 Dias</div>
+                <div class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-emerald-500"></i> Acesso Vitalício</div>
+                <div class="flex items-center gap-2"><i data-lucide="lock" class="w-4 h-4 text-emerald-500"></i> Licença Ilimitada</div>
+            </div>
         </div>
-        <div class="faq-item glass-card fade-up" style="padding:0; margin-bottom: 15px;">
-            <button class="faq-question">Preciso de muito capital? <span style="color: #0095ff;">▼</span></button>
-            <div class="faq-answer">Não. Como o robô permite configurar o lote, você pode começar com contas pequenas.</div>
+    </section>
+
+    <section id="features" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="fade-up">
+                    <h2 class="text-4xl md:text-6xl font-display font-black mb-6 uppercase tracking-tighter">Por que os Traders falham?</h2>
+                    <p class="text-zinc-400 max-w-2xl mx-auto">A maioria dos traders perde dinheiro por fatores humanos. A Hadassa IA elimina essas fraquezas.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="fade-up glass p-8 rounded-[32px] group hover:border-blue-500/50 transition-all duration-500">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="brain" class="w-7 h-7 text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-white mb-4">Psicológico</h3>
+                    <p class="text-zinc-400 leading-relaxed">O medo de perder faz você hesitar. O Hadassa IA não tem sentimentos: ele apenas executa o plano matemático sem desvios.</p>
+                </div>
+                <div class="fade-up glass p-8 rounded-[32px] group hover:border-blue-500/50 transition-all duration-500" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="clock" class="w-7 h-7 text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-white mb-4">Tempo Real</h3>
+                    <p class="text-zinc-400 leading-relaxed">Você não consegue monitorar múltiplos ativos simultaneamente. O robô faz isso 24 horas por dia, 5 dias por semana, sem cansaço.</p>
+                </div>
+                <div class="fade-up glass p-8 rounded-[32px] group hover:border-blue-500/50 transition-all duration-500" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="target" class="w-7 h-7 text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-white mb-4">Cálculo Preciso</h3>
+                    <p class="text-zinc-400 leading-relaxed">Traçar expansões manualmente gera erros de milímetros que custam caro. Na IA, a precisão é absoluta e instantânea.</p>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<footer>
-    <p>&copy; 2024 HADASSA IA — CNPJ: XX.XXX.XXX/0001-XX</p>
-    <p style="margin-top: 20px; max-width: 800px; margin: 20px auto 0 auto; opacity: 0.6;">
-        Aviso: O mercado financeiro envolve riscos. Resultados passados não garantem lucros futuros.
-    </p>
-</footer>
+    <section id="comparison" class="py-32 bg-white/[0.02]">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="fade-up">
+                    <h2 class="text-4xl md:text-6xl font-display font-black mb-6 uppercase tracking-tighter">Humano vs. Hadassa IA</h2>
+                    <p class="text-zinc-400">A evolução do trading exige ferramentas que superem a capacidade humana.</p>
+                </div>
+            </div>
 
-<script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
+            <div class="fade-up rounded-[40px] overflow-hidden border border-white/10 bg-black/40 backdrop-blur-xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[600px]">
+                        <thead>
+                            <tr class="bg-white/5">
+                                <th class="p-8 text-xs font-black uppercase tracking-widest text-zinc-500">Funcionalidade</th>
+                                <th class="p-8 text-xs font-black uppercase tracking-widest text-zinc-500">Trader Manual</th>
+                                <th class="p-8 text-xs font-black uppercase tracking-widest text-blue-500">Hadassa IA</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr class="border-t border-white/5 hover:bg-white/[0.02] transition-colors">
+                                <td class="p-8 font-bold text-white">Cálculo de Canais Fimathe</td>
+                                <td class="p-8 text-red-400/80 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4"></i> Impreciso / Lento</td>
+                                <td class="p-8 text-emerald-400 font-bold flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Instantâneo</td>
+                            </tr>
+                            <tr class="border-t border-white/5 hover:bg-white/[0.02] transition-colors">
+                                <td class="p-8 font-bold text-white">Operação no Rompimento da CA+C1</td>
+                                <td class="p-8 text-red-400/80 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4"></i> Risco Emocional</td>
+                                <td class="p-8 text-emerald-400 font-bold flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Proteção Automática</td>
+                            </tr>
+                            <tr class="border-t border-white/5 hover:bg-white/[0.02] transition-colors">
+                                <td class="p-8 font-bold text-white">Monitoramento 24/5</td>
+                                <td class="p-8 text-red-400/80 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4"></i> Limitado (Sono)</td>
+                                <td class="p-8 text-emerald-400 font-bold flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4"></i> 100% do Tempo</td>
+                            </tr>
+                            <tr class="border-t border-white/5 hover:bg-white/[0.02] transition-colors">
+                                <td class="p-8 font-bold text-white">Gerenciamento de Risco</td>
+                                <td class="p-8 text-red-400/80 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4"></i> Indisciplinado</td>
+                                <td class="p-8 text-emerald-400 font-bold flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Rígido e Matemático</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="methodology" class="py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="fade-up">
+                    <h2 class="text-4xl md:text-6xl font-display font-black mb-6 uppercase tracking-tighter">Metodologia Fimathe Pura</h2>
+                    <p class="text-zinc-400">O robô segue rigorosamente os princípios criados por Marcelo Ferreira.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="fade-up relative p-10 rounded-[32px] glass overflow-hidden group">
+                    <span class="absolute top-4 right-8 text-8xl font-black text-white/[0.03] group-hover:text-blue-500/10 transition-colors">01</span>
+                    <i data-lucide="bar-chart-3" class="w-10 h-10 text-blue-500 mb-6"></i>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">Mapeamento</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Identificação automática das Progeções e Takes.</p>
+                </div>
+                <div class="fade-up relative p-10 rounded-[32px] glass overflow-hidden group" style="transition-delay: 100ms;">
+                    <span class="absolute top-4 right-8 text-8xl font-black text-white/[0.03] group-hover:text-blue-500/10 transition-colors">02</span>
+                    <i data-lucide="shield-check" class="w-10 h-10 text-blue-500 mb-6"></i>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">Segurança</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Filtro inteligente de CA+C1 para evitar falsos rompimentos e armadilhas.</p>
+                </div>
+                <div class="fade-up relative p-10 rounded-[32px] glass overflow-hidden group" style="transition-delay: 200ms;">
+                    <span class="absolute top-4 right-8 text-8xl font-black text-white/[0.03] group-hover:text-blue-500/10 transition-colors">03</span>
+                    <i data-lucide="trending-up" class="w-10 h-10 text-blue-500 mb-6"></i>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">Projeção</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Alvos matemáticos baseados em 50%, 100% e 200% da expansão Fimathe.</p>
+                </div>
+                <div class="fade-up relative p-10 rounded-[32px] glass overflow-hidden group" style="transition-delay: 300ms;">
+                    <span class="absolute top-4 right-8 text-8xl font-black text-white/[0.03] group-hover:text-blue-500/10 transition-colors">04</span>
+                    <i data-lucide="zap" class="w-10 h-10 text-blue-500 mb-6"></i>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">Trailing</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Proteção de lucro, Break Even automático.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-32 bg-white/[0.02]">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="fade-up">
+                    <h2 class="text-4xl md:text-6xl font-display font-black mb-6 uppercase tracking-tighter">FAQ</h2>
+                    <p class="text-zinc-400">Tire suas dúvidas sobre o funcionamento do Hadassa IA.</p>
+                </div>
+            </div>
+
+            <div class="fade-up glass p-8 rounded-[40px]">
+                <div class="border-b border-white/10 last:border-0">
+                    <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Funciona em quais ativos?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">O Hadassa IA é versátil e funciona em qualquer ativo disponível no MetaTrader 5: HK50, Ouro (XAUUSD), Índices (Nasdaq, S&P500), Forex e até ativos da B3.</p>
+                    </div>
+                </div>
+                <div class="border-b border-white/10 last:border-0">
+                    <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Preciso de muito capital para começar?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">Não. O robô é totalmente configurável. Você pode ajustar o tamanho do lote de acordo com sua banca, permitindo operar até em contas pequenas (Contas Cent ou Standard).</p>
+                    </div>
+                </div>
+                <div class="border-b border-white/10 last:border-0">
+                    <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">O suporte ajuda na instalação?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">Com certeza! Oferecemos tutoriais em vídeo passo a passo e disponibilizamos arquivos de configuração (.set) otimizados para os principais ativos.</p>
+                    </div>
+                </div>
+                <div class="border-b border-white/10 last:border-0">
+                    <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">É uma licença única ou mensalidade?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">Nesta oferta, você garante o acesso vitalício. Sem mensalidades, sem taxas ocultas. Pague uma vez e use para sempre.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="fade-up relative p-16 rounded-[48px] bg-gradient-main overflow-hidden text-center">
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                <div class="relative z-10">
+                    <h2 class="text-4xl md:text-6xl font-display font-black text-white mb-8 uppercase tracking-tighter">Automatize sua estratégia hoje</h2>
+                    <p class="text-xl text-white/80 max-w-2xl mx-auto mb-6">Pare de lutar contra o mercado e comece a operar com a vantagem tecnológica que você merece.</p>
+                    
+                    <div class="mb-10">
+                        <span class="block text-white/60 text-xs font-bold tracking-widest uppercase mb-2">Oferta Especial de Lançamento</span>
+                        <span class="text-5xl md:text-6xl font-display font-black text-white leading-none">R$ 247,00</span>
+                    </div>
+
+                    <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="inline-flex items-center gap-3 px-12 py-6 rounded-full bg-white text-black font-black text-xl hover:scale-105 transition-all shadow-2xl shadow-black/20">
+                        GARANTIR MEU ACESSO
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-white/10 bg-black">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center gap-2 mb-8">
+                <i data-lucide="cpu" class="w-6 h-6 text-blue-500"></i>
+                <span class="font-display font-black text-xl tracking-tighter text-white uppercase">HADASSA <span class="text-blue-500">IA</span></span>
+            </div>
+            <p class="text-zinc-500 text-sm mb-8">© 2024 HADASSA IA — CNPJ: XX.XXX.XXX/0001-XX</p>
+            <div class="max-w-3xl mx-auto p-6 rounded-2xl bg-white/[0.02] border border-white/5 text-zinc-600 text-[10px] leading-relaxed uppercase tracking-widest">
+                Aviso: O mercado financeiro envolve riscos. Resultados passados não garantem lucros futuros. O uso de robôs de investimento não elimina o risco de perda de capital. Utilize sempre um gerenciamento de risco adequado.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar ícones
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/80', 'backdrop-blur-lg', 'border-b', 'border-white/10', 'py-4');
+                nav.classList.remove('bg-transparent', 'py-6');
+            } else {
+                nav.classList.remove('bg-black/80', 'backdrop-blur-lg', 'border-b', 'border-white/10', 'py-4');
+                nav.classList.add('bg-transparent', 'py-6');
+            }
         });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        // Fade Up Animation on Scroll
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
 
-    document.querySelectorAll('.faq-question').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const item = btn.parentElement;
-            item.classList.toggle('active');
-        });
-    });
-</script>
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+        // FAQ Toggle Logic
+        function toggleFAQ(button) {
+            const container = button.parentElement;
+            const answer = container.querySelector('.faq-answer');
+            const icon = button.querySelector('i');
+            const isOpen = container.classList.contains('active');
+
+            // Fechar outros itens abertos
+            document.querySelectorAll('.border-b').forEach(item => {
+                if (item !== container) {
+                    item.classList.remove('active');
+                    const otherAnswer = item.querySelector('.faq-answer');
+                    if (otherAnswer) {
+                        otherAnswer.style.maxHeight = '0';
+                        otherAnswer.classList.add('opacity-0');
+                    }
+                    const otherIcon = item.querySelector('i[data-lucide="chevron-down"]');
+                    if (otherIcon) {
+                        otherIcon.style.transform = 'rotate(0deg)';
+                        otherIcon.classList.remove('text-blue-500');
+                    }
+                }
+            });
+
+            // Alternar o item atual
+            if (!isOpen) {
+                container.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                answer.classList.remove('opacity-0');
+                icon.style.transform = 'rotate(180deg)';
+                icon.classList.add('text-blue-500');
+            } else {
+                container.classList.remove('active');
+                answer.style.maxHeight = '0';
+                answer.classList.add('opacity-0');
+                icon.style.transform = 'rotate(0deg)';
+                icon.classList.remove('text-blue-500');
+            }
+        }
+    </script>
 </body>
 </html>
