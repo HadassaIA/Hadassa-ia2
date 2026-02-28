@@ -12,15 +12,17 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --primary: #00F2FF; /* Azul Ciano Neon */
-            --secondary: #00C853; /* Verde Esmeralda */
-            --bg: #050505;
-            --fg: #f2f2f2;
+            /* Novas cores vibrantes baseadas na imagem */
+            --primary: #00E5FF; /* Azul Neon vibrante */
+            --secondary: #00FF88; /* Verde Neon vibrante */
+            --bg: #000000; /* Fundo preto absoluto */
+            --card-gradient: linear-gradient(135deg, #022340 0%, #009355 100%); /* Degradê suave do cartão */
+            --fg: #ffffff; /* Texto branco */
             --muted: #a1a1aa;
-            --glass-bg: rgba(255,255,255,0.05);
-            --glass-border: rgba(255,255,255,0.1);
-            --gradient: linear-gradient(135deg, #00F2FF, #00C853);
-            --shadow-glow: 0 0 20px rgba(0, 242, 255, 0.3);
+            --glass-bg: rgba(255,255,255,0.03);
+            --glass-border: rgba(255,255,255,0.08);
+            --gradient: linear-gradient(135deg, #00E5FF, #00FF88); /* Gradiente neon */
+            --shadow-glow: 0 0 25px rgba(0,229,255,0.35);
         }
 
         body {
@@ -30,9 +32,14 @@
             overflow-x: hidden;
             line-height: 1.6;
             scroll-behavior: smooth;
+            /* Centraliza o conteúdo na tela */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        h1, h2, h3 { font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
+        h1, h2, h3 { font-family: 'Orbitron', sans-serif; letter-spacing: 1px; text-transform: uppercase;}
 
         .text-gradient {
             background: var(--gradient);
@@ -41,7 +48,7 @@
             background-clip: text;
         }
 
-        /* Botão Flutuante */
+        /* Botão Flutuante - Agora no canto inferior */
         .float-wa {
             position: fixed;
             bottom: 30px;
@@ -61,107 +68,133 @@
         }
         .float-wa:hover { transform: translateY(-5px) scale(1.05); }
 
-        .glass-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(12px);
-            border-radius: 24px;
-            transition: all 0.3s ease;
-        }
-
-        /* Buttons */
-        .btn-gradient {
-            position: relative;
-            display: inline-block;
-            padding: 20px 45px;
-            border-radius: 50px;
-            background: var(--gradient);
-            color: #fff;
-            font-weight: 800;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 14px;
-            box-shadow: var(--shadow-glow);
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-gradient:hover { 
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 242, 255, 0.5);
-        }
-
-        /* HERO - MODIFICAÇÃO DA IMAGEM DE FUNDO AQUI */
-        .hero {
-            min-height: 100vh;
+        /* Estrutura do Cartão Central */
+        .main-card {
+            width: 100%;
+            max-width: 480px; /* Largura similar ao mobile da imagem */
+            background: var(--card-gradient);
+            border-radius: 40px;
+            margin: 20px; /* Espaço ao redor do cartão */
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 100px 24px;
-            background: 
-                radial-gradient(circle at 50% 0%, rgba(0, 242, 255, 0.15), transparent 50%),
-                linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.85)),
-                url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
-            /* A imagem acima é de circuitos integrados, similar ao topo da sua referência */
         }
-        .hero-content { max-width: 950px; z-index: 2; }
-        .hero h1 { font-size: clamp(45px, 9vw, 90px); line-height: 1.1; margin-bottom: 25px; }
-        .hero p { font-size: clamp(18px, 2.2vw, 24px); margin-bottom: 45px; color: #ccc; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        /* Header dentro do Cartão */
+        header {
+            width: 100%;
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.2); /* Sombreado leve atrás do logo */
+        }
+        .logo { font-size: 20px; font-weight: 900; color: white; }
+        .btn-header {
+            padding: 10px 20px;
+            background: white;
+            color: black;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* HERO dentro do Cartão */
+        .hero {
+            padding: 60px 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .hero h1 { font-size: 36px; line-height: 1.2; margin-bottom: 25px; color: white; }
+        .hero p { font-size: 16px; margin-bottom: 45px; color: rgba(255,255,255,0.8); max-width: 320px; }
 
         .trust-badges {
-            display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; margin-top: 40px;
-            font-size: 14px; font-weight: 600; color: var(--secondary);
+            display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 40px;
+            font-size: 12px; font-weight: 600; color: white;
         }
 
-        /* SECTIONS */
-        .section { padding: 100px 24px; max-width: 1200px; margin: auto; }
-        .section-title { text-align: center; margin-bottom: 60px; font-size: clamp(30px, 5vw, 45px); font-weight: 900; }
+        /* Botão Principal - Estilo Pílula Branca */
+        .btn-main {
+            display: inline-block;
+            padding: 20px 40px;
+            border-radius: 50px;
+            background: white;
+            color: black;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .card { padding: 45px; }
-        .card .icon { font-size: 50px; margin-bottom: 25px; display: block; }
+        /* SECTIONS - Fora do Cartão, Fundo Preto */
+        .section { padding: 80px 20px; max-width: 1000px; width: 100%; margin: auto; }
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 32px; font-weight: 900; color: white;}
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        
+        /* Glass Cards com cores neon */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-5px); }
+        .glass-card h3 { color: white; margin-bottom: 15px; font-size: 18px;}
+        .glass-card p { color: var(--muted); font-size: 14px;}
+        .card .icon { font-size: 40px; margin-bottom: 20px; display: block; color: var(--primary); }
 
         /* TABELA COMPARATIVA */
-        .comparison-wrapper { overflow-x: auto; margin-top: 20px; border-radius: 20px; border: 1px solid var(--glass-border); }
-        .comp-table { width: 100%; border-collapse: collapse; text-align: left; background: var(--glass-bg); }
-        .comp-table th, .comp-table td { padding: 22px; border-bottom: 1px solid var(--glass-border); }
-        .comp-table th { background: rgba(255, 255, 255, 0.05); color: var(--primary); font-size: 13px; text-transform: uppercase; }
+        .comparison-wrapper { overflow-x: auto; margin-top: 20px; border-radius: 15px; border: 1px solid var(--glass-border); }
+        .comp-table { width: 100%; border-collapse: collapse; text-align: left; background: var(--glass-bg); font-size: 14px;}
+        .comp-table th, .comp-table td { padding: 18px; border-bottom: 1px solid var(--glass-border); color: white;}
+        .comp-table th { background: rgba(255, 255, 255, 0.03); color: var(--primary); font-size: 12px; text-transform: uppercase; }
         .check-yes { color: var(--secondary); font-weight: 700; }
-        .check-no { color: #ff4444; opacity: 0.8; }
+        .check-no { color: #ff5555; opacity: 0.9; }
 
         /* STRATEGY STEPS */
-        .strategy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-top: 50px; }
-        .step-card { padding: 40px; text-align: center; position: relative; overflow: hidden; }
-        .step-num { font-size: 60px; font-weight: 900; color: var(--primary); opacity: 0.1; position: absolute; top: 10px; right: 20px; }
+        .strategy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 40px; }
+        .step-card { padding: 30px; text-align: center; position: relative; overflow: hidden; }
+        .step-num { font-size: 50px; font-weight: 900; color: var(--primary); opacity: 0.08; position: absolute; top: 10px; right: 15px; }
 
         /* FAQ */
-        .faq { max-width: 850px; margin: auto; }
-        .faq-item { margin-bottom: 15px; overflow: hidden; }
+        .faq { max-width: 750px; margin: auto; }
+        .faq-item { margin-bottom: 10px; }
         .faq-question {
-            width: 100%; padding: 25px; background: none; border: none;
+            width: 100%; padding: 20px; background: none; border: none;
             color: #fff; text-align: left; font-weight: 700; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center; font-size: 18px;
+            display: flex; justify-content: space-between; align-items: center; font-size: 16px;
         }
         .faq-question span { transition: transform 0.3s ease; color: var(--primary); }
         .faq-answer {
             max-height: 0; overflow: hidden; transition: all 0.4s ease;
-            padding: 0 25px; color: var(--muted);
+            padding: 0 20px; color: var(--muted); font-size: 14px;
         }
-        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 30px; }
+        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 25px; }
         .faq-item.active .faq-question span { transform: rotate(180deg); }
 
-        footer { padding: 80px 24px; text-align: center; border-top: 1px solid var(--glass-border); background: #020202; font-size: 13px; color: #666; }
+        footer { padding: 60px 20px; text-align: center; border-top: 1px solid var(--glass-border); background: #000; width: 100%; font-size: 12px; color: #555; }
 
         /* ANIMATION */
-        .fade-up { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-        @media (max-width: 768px) {
-            .hero { padding-top: 120px; }
-            .grid { grid-template-columns: 1fr; }
+        @media (max-width: 480px) {
+            .main-card { margin: 10px; border-radius: 30px; }
+            .hero h1 { font-size: 28px; }
+            .btn-main { padding: 15px 30px; font-size: 12px; }
         }
     </style>
 </head>
@@ -171,18 +204,26 @@
     <span>💬 Testar Grátis</span>
 </a>
 
-<section class="hero">
-    <div class="hero-content fade-up">
-        <h1 class="text-gradient">HADASSA IA</h1>
-        <p>A precisão matemática da estratégia <strong>FIMATHE</strong> unida à tecnologia de ponta. Opere no MT5 com 100% de automação.</p>
-        <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="btn-gradient">Quero Acesso Imediato</a>
-        <div class="trust-badges">
-            <span>🛡️ Garantia de 7 Dias</span>
-            <span>⚡ Acesso Vitalício</span>
-            <span>🔓 Sem limite de Conta</span>
+<main class="main-card">
+    <header>
+        <div class="logo">HADASSA <span style="color:var(--primary)">IA</span></div>
+        <a href="https://pay.hotmart.com/I104582582H" class="btn-header">Acessar Agora</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AUTOMATIZE SUA ESTRATÉGIA HOJE</h1>
+            <p>Pare de lutar contra o mercado e comece a operar com a vantagem tecnológica que você merece.</p>
+            <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="btn-main">Garantir Meu Acesso</a>
+            
+            <div class="trust-badges">
+                <span>🛡️ Garantia de 7 Dias</span>
+                <span>⚡ Acesso Vitalício</span>
+                <span>🔓 Sem limite de Conta</span>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</main>
 
 <section class="section">
     <h2 class="section-title fade-up">Por que os Traders falham?</h2>
@@ -205,7 +246,7 @@
     </div>
 </section>
 
-<section class="section" style="background: rgba(255,255,255,0.02); border-radius: 50px;">
+<section class="section" style="background: rgba(255,255,255,0.01);">
     <h2 class="section-title fade-up">Humano vs. Hadassa IA</h2>
     <div class="comparison-wrapper fade-up">
         <table class="comp-table">
@@ -292,16 +333,16 @@
 </section>
 
 <section class="section fade-up" style="text-align: center;">
-    <div class="glass-card card" style="background: var(--gradient); border: none;">
-        <h2 style="color: white; margin-bottom: 20px;">Automatize sua estratégia hoje</h2>
-        <p style="color: rgba(255,255,255,0.9); margin-bottom: 35px; font-size: 18px;">Pare de lutar contra o mercado e comece a operar com vantagem tecnológica.</p>
-        <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="btn-gradient" style="background: #fff; color: #050505;">Garantir Meu Acesso</a>
+    <div class="glass-card card" style="background: var(--gradient); border: none; max-width: 600px; margin: auto;">
+        <h2 style="color: black; margin-bottom: 15px; text-transform: none;">Automatize sua estratégia hoje</h2>
+        <p style="color: rgba(0,0,0,0.8); margin-bottom: 30px; font-size: 16px;">Pare de lutar contra o mercado e comece a operar com vantagem tecnológica.</p>
+        <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="btn-main">Garantir Meu Acesso</a>
     </div>
 </section>
 
 <footer>
     <p>&copy; 2024 HADASSA IA — CNPJ: XX.XXX.XXX/0001-XX</p>
-    <p style="margin-top: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+    <p style="margin-top: 15px; max-width: 600px; margin-left: auto; margin-right: auto;">
         Aviso: O mercado financeiro envolve riscos. Resultados passados não garantem lucros futuros. Utilize o gerenciamento de risco.
     </p>
 </footer>
@@ -313,7 +354,7 @@
                 entry.target.classList.add('visible');
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
