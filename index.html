@@ -30,7 +30,72 @@
             overflow-x: hidden;
             line-height: 1.6;
             scroll-behavior: smooth;
+            /* Adiciona espaço para o cabeçalho fixo não cobrir o início do site */
+            padding-top: 80px; 
         }
+
+        /* --- CONFIGURAÇÃO DO CABEÇALHO FIXO (STAY ON TOP) --- */
+        .header-fixo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            z-index: 9999;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-chip {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #0095ff, #00d981);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 149, 255, 0.3);
+        }
+
+        .logo-text-header {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .logo-text-header span {
+            color: #0095ff;
+        }
+
+        .btn-header {
+            background: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-header:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        /* ---------------------------------------------------- */
 
         h1, h2, h3 { font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
 
@@ -41,7 +106,7 @@
             background-clip: text;
         }
 
-        /* Botão Flutuante */
+        /* Botão Flutuante WhatsApp */
         .float-wa {
             position: fixed;
             bottom: 30px;
@@ -69,7 +134,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Buttons */
+        /* Botões Padrão */
         .btn-gradient {
             position: relative;
             display: inline-block;
@@ -92,20 +157,19 @@
             box-shadow: 0 15px 30px rgba(0, 242, 255, 0.5);
         }
 
-        /* HERO - MODIFICAÇÃO DA IMAGEM DE FUNDO AQUI */
+        /* HERO SECTION */
         .hero {
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 100px 24px;
+            padding: 60px 24px;
             background: 
                 radial-gradient(circle at 50% 0%, rgba(0, 242, 255, 0.15), transparent 50%),
                 linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.85)),
                 url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
-            /* A imagem acima é de circuitos integrados, similar ao topo da sua referência */
         }
         .hero-content { max-width: 950px; z-index: 2; }
         .hero h1 { font-size: clamp(45px, 9vw, 90px); line-height: 1.1; margin-bottom: 25px; }
@@ -160,12 +224,25 @@
         .fade-up.visible { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 768px) {
+            .header-fixo { padding: 0 3%; }
+            .logo-text-header { font-size: 18px; }
+            .btn-header { padding: 10px 18px; font-size: 12px; }
             .hero { padding-top: 120px; }
             .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
+<header class="header-fixo">
+    <div class="logo-container">
+        <div class="icon-chip">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+        </div>
+        <div class="logo-text-header">HADASSA <span>IA</span></div>
+    </div>
+    <a href="https://pay.hotmart.com/I104582582H" class="btn-header">ACESSAR AGORA</a>
+</header>
 
 <a href="https://wa.me/5522988102360?text=Quero+testar+o+Hadassa+IA" class="float-wa" target="_blank">
     <span>💬 Testar Grátis</span>
