@@ -12,15 +12,15 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --primary: #0A84FF;
-            --secondary: #00C853;
+            --primary: #00F2FF; /* Azul Ciano Neon */
+            --secondary: #00C853; /* Verde Esmeralda */
             --bg: #050505;
             --fg: #f2f2f2;
             --muted: #a1a1aa;
             --glass-bg: rgba(255,255,255,0.05);
             --glass-border: rgba(255,255,255,0.1);
-            --gradient: linear-gradient(135deg, #0A84FF, #00C853);
-            --shadow-glow: 0 0 20px rgba(10,132,255,0.3);
+            --gradient: linear-gradient(135deg, #00F2FF, #00C853);
+            --shadow-glow: 0 0 20px rgba(0, 242, 255, 0.3);
         }
 
         body {
@@ -89,10 +89,10 @@
         }
         .btn-gradient:hover { 
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(10,132,255,0.5);
+            box-shadow: 0 15px 30px rgba(0, 242, 255, 0.5);
         }
 
-        /* HERO */
+        /* HERO - MODIFICAÇÃO DA IMAGEM DE FUNDO AQUI */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -101,9 +101,11 @@
             justify-content: center;
             text-align: center;
             padding: 100px 24px;
-            background: radial-gradient(circle at 50% 0%, rgba(10,132,255,0.2), transparent 50%),
-                        linear-gradient(rgba(5,5,5,0.8), rgba(5,5,5,0.8)),
-                        url('https://images.unsplash.com/photo-1611974717483-36009bc7376c?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+            background: 
+                radial-gradient(circle at 50% 0%, rgba(0, 242, 255, 0.15), transparent 50%),
+                linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.85)),
+                url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+            /* A imagem acima é de circuitos integrados, similar ao topo da sua referência */
         }
         .hero-content { max-width: 950px; z-index: 2; }
         .hero h1 { font-size: clamp(45px, 9vw, 90px); line-height: 1.1; margin-bottom: 25px; }
