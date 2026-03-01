@@ -53,23 +53,32 @@
 
     <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
         <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
-                    <i data-lucide="cpu" class="w-6 h-6 text-white"></i>
+            <div class="flex items-center gap-2 text-white">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 text-white">
+                    <i data-lucide="cpu" class="w-6 h-6"></i>
                 </div>
-                <span class="font-display font-black text-xl tracking-tighter text-white uppercase">HADASSA <span class="text-blue-500">IA</span></span>
+                <span class="font-display font-black text-xl tracking-tighter uppercase">HADASSA <span class="text-blue-500">IA</span></span>
             </div>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+            <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-zinc-400">
                 <a href="#features" class="hover:text-white transition-colors">Vantagens</a>
                 <a href="#comparison" class="hover:text-white transition-colors">Comparativo</a>
                 <a href="#methodology" class="hover:text-white transition-colors">Metodologia</a>
                 <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
             </div>
 
-            <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="px-6 py-2.5 rounded-full bg-white text-black text-sm font-bold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95">
-                ACESSAR AGORA
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="https://www.instagram.com/hadassaia?igsh=MWhvaTJkczg2cHk4Zg==" 
+                   target="_blank" 
+                   class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all group">
+                    <i data-lucide="instagram" class="w-4 h-4 text-zinc-400 group-hover:text-blue-500"></i>
+                    <span class="text-xs font-bold text-zinc-400 group-hover:text-white">@hadassaia</span>
+                </a>
+
+                <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="px-6 py-2.5 rounded-full bg-white text-black text-xs md:text-sm font-bold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95 shadow-lg">
+                    ACESSAR AGORA
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -326,33 +335,31 @@
         </div>
     </section>
 
-         <footer class="py-20 border-t border-white/10 bg-black">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-        <div class="flex items-center justify-center gap-2 mb-8">
-            <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-lg flex items-center justify-center">
-                <i data-lucide="cpu" class="w-5 h-5 text-white"></i>
+    <footer class="py-20 border-t border-white/10 bg-black">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center gap-2 mb-8">
+                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-lg flex items-center justify-center text-white">
+                    <i data-lucide="cpu" class="w-5 h-5"></i>
+                </div>
+                <span class="font-display font-black text-xl tracking-tighter text-white uppercase">HADASSA <span class="text-blue-500">IA</span></span>
             </div>
-            <span class="font-display font-black text-xl tracking-tighter text-white uppercase">HADASSA <span class="text-blue-500">IA</span></span>
-        </div>
 
-        <div class="flex justify-center mb-10">
-            <a href="https://www.instagram.com/hadassaia?igsh=MWhvaTJkczg2cHk4Zg==" 
-               target="_blank" 
-               class="group flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-300">
-                <i data-lucide="instagram" class="w-5 h-5 text-zinc-400 group-hover:text-blue-500 transition-colors"></i>
-                <span class="text-zinc-400 group-hover:text-white font-medium transition-colors">@hadassaia</span>
-            </a>
-        </div>
+            <div class="flex justify-center mb-10">
+                <a href="https://www.instagram.com/hadassaia?igsh=MWhvaTJkczg2cHk4Zg==" 
+                   target="_blank" 
+                   class="group flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-300">
+                    <i data-lucide="instagram" class="w-5 h-5 text-zinc-400 group-hover:text-blue-500 transition-colors"></i>
+                    <span class="text-zinc-400 group-hover:text-white font-medium transition-colors">@hadassaia</span>
+                </a>
+            </div>
 
-        <p class="text-zinc-500 text-sm mb-8">© 2026 HADASSA IA • Todos os direitos reservados</p>
-        
-        <div class="max-w-3xl mx-auto p-6 rounded-2xl bg-white/[0.02] border border-white/5 text-zinc-600 text-[10px] leading-relaxed uppercase tracking-widest">
-            Aviso: O mercado financeiro envolve riscos. Resultados passados não garantem lucros futuros. A estratégia Fimathe requer disciplina e gerenciamento.
+            <p class="text-zinc-500 text-sm mb-8">© 2026 HADASSA IA • Todos os direitos reservados</p>
+            
+            <div class="max-w-3xl mx-auto p-6 rounded-2xl bg-white/[0.02] border border-white/5 text-zinc-600 text-[10px] leading-relaxed uppercase tracking-widest">
+                Aviso: O mercado financeiro envolve riscos. Resultados passados não garantem lucros futuros. A estratégia Fimathe requer disciplina e gerenciamento.
+            </div>
         </div>
-    </div>
-</footer>
-
-    
+    </footer>
 
     <script>
         lucide.createIcons();
