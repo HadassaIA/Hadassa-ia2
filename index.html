@@ -47,6 +47,14 @@
         
         /* Estilo do Relógio */
         .timer-box { background: rgba(0, 0, 0, 0.3); padding: 10px; border-radius: 12px; min-width: 60px; border: 1px solid rgba(255,255,255,0.1); }
+
+        .pulse-cta { animation: pulseGlow 2.2s ease-in-out infinite; }
+        .plan-card { scroll-margin-top: 140px; }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 rgba(10,132,255,0.00), 0 20px 40px rgba(10,132,255,0.20); transform: translateY(0); }
+            50% { box-shadow: 0 0 30px rgba(10,132,255,0.20), 0 24px 54px rgba(0,200,83,0.18); transform: translateY(-2px); }
+        }
+
     </style>
 </head>
 <body class="selection:bg-blue-500/30 overflow-x-hidden">
@@ -108,16 +116,18 @@
                 A precisão matemática da estratégia <strong class="text-white">FIMATHE</strong> unida à tecnologia de ponta. Opere no MT5 com 100% de automação.
             </p>
 
-            <div class="fade-up flex flex-col sm:flex-row items-center justify-center gap-6" style="transition-delay: 300ms;">
-                <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="group relative px-10 py-5 rounded-full bg-gradient-main text-white font-black text-lg shadow-2xl shadow-blue-500/25 hover:scale-105 transition-all flex items-center gap-2">
-                    QUERO ACESSO IMEDIATO
+            <div class="fade-up flex flex-col items-center justify-center gap-4" style="transition-delay: 300ms;">
+                <a href="#planos" class="group relative px-10 py-5 rounded-full bg-gradient-main text-white font-black text-lg shadow-2xl shadow-blue-500/25 hover:scale-105 transition-all flex items-center gap-2 pulse-cta">
+                    QUERO ESCOLHER MEU PLANO
                     <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                 </a>
+                <span class="text-zinc-500 text-sm uppercase tracking-[0.25em]">Planos a partir de R$ 59,90/mês</span>
+                <span class="text-zinc-600 text-xs uppercase tracking-[0.35em]">Toque no botão e desça até os planos</span>
             </div>
 
             <div class="fade-up mt-16 flex flex-wrap items-center justify-center gap-8 text-xs font-bold text-zinc-500 uppercase tracking-widest" style="transition-delay: 400ms;">
                 <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i> Garantia de 7 Dias</div>
-                <div class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-emerald-500"></i> Acesso Vitalício</div>
+                <div class="flex items-center gap-2"><i data-lucide="layers-3" class="w-4 h-4 text-emerald-500"></i> 3 Planos Disponíveis</div>
                 <div class="flex items-center gap-2"><i data-lucide="lock" class="w-4 h-4 text-emerald-500"></i> Sem Limites de Contas</div>
             </div>
         </div>
@@ -283,18 +293,63 @@
                         <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
-                        <p class="pb-6 text-zinc-400 leading-relaxed">Nesta oferta, você garante o acesso vitalício. Sem mensalidades, sem taxas ocultas. Pague uma vez e use para sempre.</p>
+                        <p class="pb-6 text-zinc-400 leading-relaxed">Você pode escolher o formato ideal para a sua operação: Plano Mensal, Plano Semestral ou Plano Vitalício. Assim, você decide entre começar com menor investimento, garantir 6 meses de acesso ou liberar o uso definitivo.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="fade-up flex flex-col items-center" style="transition-delay: 100ms;">
-                <span class="text-zinc-500 text-sm line-through tracking-widest uppercase mb-1">De R$ 1.997,00 por apenas</span>
-                <div class="flex items-baseline gap-2">
-                    <span class="text-white text-2xl font-bold italic">R$</span>
-                    <span class="text-6xl md:text-7xl font-display font-black text-white tracking-tighter">347,00</span>
+            <div id="planos" class="fade-up grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 scroll-mt-32" style="transition-delay: 100ms;">
+                <div class="plan-card glass p-8 rounded-[32px] text-center border border-white/10 hover:border-blue-500/50 transition-all duration-300">
+                    <span class="text-zinc-500 text-xs font-bold tracking-[0.25em] uppercase">Plano de Entrada</span>
+                    <h3 class="text-2xl font-display font-black text-white mt-4 mb-3 uppercase tracking-tighter">Mensal</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-6">Ideal para começar com menor investimento e testar o operacional no dia a dia.</p>
+                    <div class="mb-6">
+                        <span class="text-white text-2xl font-bold italic">R$</span>
+                        <span class="text-5xl font-display font-black text-white tracking-tighter">59,90</span>
+                        <span class="text-zinc-400 text-sm">/mês</span>
+                    </div>
+                    <div class="text-zinc-500 text-xs uppercase tracking-widest mb-6">Renovação Mensal</div>
+                    <a href="https://pay.hotmart.com/P105364365A?off=u9uf5knz&checkoutMode=6" target="_blank" class="block py-3 rounded-full bg-white text-black font-bold hover:scale-105 transition-all">
+                        ASSINAR AGORA
+                    </a>
                 </div>
-                <span class="text-emerald-500 text-xs font-bold tracking-[0.2em] uppercase mt-2">Pagamento Único • Acesso Vitalício</span>
+
+                <div class="plan-card glass p-8 rounded-[32px] text-center border-2 border-emerald-500 relative overflow-hidden shadow-2xl shadow-emerald-500/10 hover:scale-[1.02] transition-all duration-300">
+                    <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black tracking-widest uppercase">Mais Vendido</div>
+                    <span class="text-emerald-400 text-xs font-bold tracking-[0.25em] uppercase">Melhor Custo-Benefício</span>
+                    <h3 class="text-2xl font-display font-black text-white mt-4 mb-3 uppercase tracking-tighter">Semestral</h3>
+                    <p class="text-zinc-300 text-sm leading-relaxed mb-4">Mais estabilidade para operar por mais tempo pagando menos que no plano mensal.</p>
+                    <div class="mb-2">
+                        <span class="text-zinc-500 text-sm line-through tracking-widest uppercase">De R$ 359,40</span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="text-white text-2xl font-bold italic">R$</span>
+                        <span class="text-5xl font-display font-black text-white tracking-tighter">347</span>
+                        <span class="text-zinc-400 text-sm">/6 meses</span>
+                    </div>
+                    <div class="text-emerald-500 text-xs font-bold tracking-[0.2em] uppercase mb-6">Economia de R$ 12,40</div>
+                    <a href="https://pay.hotmart.com/P105364365A?off=gj8pay8k&checkoutMode=6" target="_blank" class="block py-3 rounded-full bg-gradient-main text-white font-bold hover:scale-105 transition-all">
+                        COMEÇAR AGORA
+                    </a>
+                </div>
+
+                <div class="plan-card glass p-8 rounded-[32px] text-center border border-white/10 hover:border-blue-500/50 transition-all duration-300">
+                    <span class="text-zinc-500 text-xs font-bold tracking-[0.25em] uppercase">Plano Definitivo</span>
+                    <h3 class="text-2xl font-display font-black text-white mt-4 mb-3 uppercase tracking-tighter">Vitalício</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-6">Pagamento único para usar sem mensalidades e sem preocupação com renovação.</p>
+                    <div class="mb-6">
+                        <span class="text-zinc-500 text-sm line-through tracking-widest uppercase mr-2">De R$ 1.997</span>
+                        <div class="mt-2">
+                            <span class="text-white text-2xl font-bold italic">R$</span>
+                            <span class="text-5xl font-display font-black text-white tracking-tighter">847</span>
+                            <span class="text-zinc-400 text-sm"> único</span>
+                        </div>
+                    </div>
+                    <div class="text-emerald-500 text-xs font-bold tracking-[0.2em] uppercase mb-6">Acesso Para Sempre</div>
+                    <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="block py-3 rounded-full bg-white text-black font-bold hover:scale-105 transition-all">
+                        ACESSO IMEDIATO
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -309,7 +364,7 @@
                     
                     <div class="mb-10">
                         <span class="block text-white/60 text-xs font-bold tracking-widest uppercase mb-4">Oferta Expira em:</span>
-                        <div class="flex justify-center gap-4 font-display text-white mb-6">
+                        <div class="flex justify-center gap-4 font-display text-white mb-8">
                             <div class="timer-box">
                                 <span id="hours" class="block text-3xl font-black">00</span>
                                 <span class="text-[10px] uppercase tracking-tighter opacity-60">Horas</span>
@@ -323,13 +378,34 @@
                                 <span class="text-[10px] uppercase tracking-tighter opacity-60">Seg</span>
                             </div>
                         </div>
-                        <span class="text-5xl md:text-6xl font-display font-black text-white leading-none">R$ 347,00</span>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                            <div class="bg-black/20 border border-white/10 rounded-[24px] p-6">
+                                <div class="text-white/60 text-xs font-bold tracking-widest uppercase mb-2">Mensal</div>
+                                <div class="text-4xl font-display font-black text-white">R$ 59,90<span class="text-base font-sans font-medium text-white/60">/mês</span></div>
+                            </div>
+                            <div class="bg-black/30 border border-white/20 rounded-[24px] p-6 relative">
+                                <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-white text-black text-[10px] font-black tracking-widest uppercase">Mais Vendido</div>
+                                <div class="text-white/60 text-xs font-bold tracking-widest uppercase mb-2">Semestral</div>
+                                <div class="text-4xl font-display font-black text-white">R$ 347<span class="text-base font-sans font-medium text-white/60">/6 meses</span></div>
+                            </div>
+                            <div class="bg-black/20 border border-white/10 rounded-[24px] p-6">
+                                <div class="text-white/60 text-xs font-bold tracking-widest uppercase mb-2">Vitalício</div>
+                                <div class="text-4xl font-display font-black text-white">R$ 847<span class="text-base font-sans font-medium text-white/60"> único</span></div>
+                            </div>
+                        </div>
                     </div>
 
-                    <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="inline-flex items-center gap-3 px-12 py-6 rounded-full bg-white text-black font-black text-xl hover:scale-105 transition-all shadow-2xl shadow-black/20">
-                        GARANTIR MEU ACESSO
-                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
-                    </a>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#planos" class="inline-flex items-center gap-3 px-12 py-6 rounded-full bg-white text-black font-black text-xl hover:scale-105 transition-all shadow-2xl shadow-black/20">
+                            ESCOLHER MEU PLANO
+                            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                        </a>
+                        <a href="https://wa.me/5522988102360?text=Quero+saber+mais+sobre+os+planos+do+Hadassa+IA" target="_blank" class="inline-flex items-center gap-3 px-10 py-6 rounded-full border border-white/25 text-white font-black text-lg hover:bg-white/10 transition-all">
+                            FALAR NO WHATSAPP
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -362,7 +438,9 @@
     </footer>
 
     <script>
-        lucide.createIcons();
+        if (window.lucide && typeof lucide.createIcons === 'function') {
+            lucide.createIcons();
+        }
 
         // Lógica do Cronômetro
         function startTimer() {
@@ -377,9 +455,12 @@
                 const m = Math.floor((diff / (1000 * 60)) % 60);
                 const s = Math.floor((diff / 1000) % 60);
                 
-                document.getElementById('hours').innerText = h < 10 ? '0'+h : h;
-                document.getElementById('minutes').innerText = m < 10 ? '0'+m : m;
-                document.getElementById('seconds').innerText = s < 10 ? '0'+s : s;
+                const hoursEl = document.getElementById('hours');
+                const minutesEl = document.getElementById('minutes');
+                const secondsEl = document.getElementById('seconds');
+                if (hoursEl) hoursEl.innerText = h < 10 ? '0'+h : h;
+                if (minutesEl) minutesEl.innerText = m < 10 ? '0'+m : m;
+                if (secondsEl) secondsEl.innerText = s < 10 ? '0'+s : s;
             }
             setInterval(update, 1000);
             update();
@@ -408,13 +489,34 @@
 
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetSelector = this.getAttribute('href');
+                if (!targetSelector || targetSelector === '#') return;
+                const target = document.querySelector(targetSelector);
+                if (!target) return;
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                if (targetSelector === '#planos') {
+                    target.classList.remove('ring-2', 'ring-emerald-500/60', 'rounded-[40px]');
+                    void target.offsetWidth;
+                    target.classList.add('ring-2', 'ring-emerald-500/60', 'rounded-[40px]');
+                    setTimeout(() => {
+                        target.classList.remove('ring-2', 'ring-emerald-500/60', 'rounded-[40px]');
+                    }, 1800);
+                }
+            });
+        });
+
         function toggleFAQ(button) {
             const container = button.parentElement;
             const answer = container.querySelector('.faq-answer');
             const icon = button.querySelector('i');
             const isOpen = container.classList.contains('active');
 
-            document.querySelectorAll('.border-b').forEach(item => {
+            document.querySelectorAll('#faq .border-b').forEach(item => {
                 if (item !== container) {
                     item.classList.remove('active');
                     const otherAnswer = item.querySelector('.faq-answer');
