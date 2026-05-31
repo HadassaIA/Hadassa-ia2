@@ -60,11 +60,10 @@
 
     <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
         <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-            <div class="flex items-center gap-2 text-white">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
-                    <i data-lucide="cpu" class="w-6 h-6"></i>
-                </div>
-                <span class="font-display font-black text-xl tracking-tighter uppercase">HADASSA <span class="text-blue-500">IA</span></span>
+            <div class="flex items-center gap-3 text-white">
+                <!-- LOGO ADICIONADA NA BARRA DE NAVEGAÇÃO -->
+                <img src="1000096943.png" alt="Ícone Hadassa IA" class="w-10 h-10 rounded-xl object-cover border border-white/10 shadow-lg shadow-blue-500/20">
+                <span class="font-display font-black text-xl tracking-tighter uppercase hidden sm:block">HADASSA <span class="text-blue-500">IA</span></span>
             </div>
             
             <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-zinc-400">
@@ -97,8 +96,19 @@
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/80 to-[#050505]"></div>
         </div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center mt-10">
-            <div class="fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-xs font-bold tracking-widest uppercase mb-6">
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center mt-6">
+            
+            <!-- IMAGEM DA LOGO PRINCIPAL EM DESTAQUE -->
+            <div class="fade-up flex justify-center mb-10">
+                <div class="relative w-56 h-56 md:w-72 md:h-72 group">
+                    <!-- Efeito de brilho de fundo combinando com as cores da logo -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-[#D4AF37]/20 via-transparent to-blue-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-700"></div>
+                    
+                    <img src="1000096943.png" alt="Logo Oficial Hadassa IA" class="relative z-10 w-full h-full object-contain rounded-3xl drop-shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                </div>
+            </div>
+
+            <div class="fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-xs font-bold tracking-widest uppercase mb-6" style="transition-delay: 50ms;">
                 <i data-lucide="bot" class="w-4 h-4"></i>
                 Expert Advisor para MT5
             </div>
@@ -274,10 +284,8 @@
                 </div>
             </div>
 
-            <!-- Grade atualizada para 2 colunas e centralizada com max-w-5xl -->
             <div class="fade-up grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-5xl mx-auto">
                 
-                <!-- Plano Mensal -->
                 <div class="plan-card bg-[#0a0a0a] p-8 rounded-[32px] text-center border border-white/10 hover:border-blue-500/50 transition-all duration-300">
                     <span class="text-zinc-500 text-xs font-bold tracking-[0.25em] uppercase">Plano de Entrada</span>
                     <h3 class="text-2xl font-display font-black text-white mt-4 mb-3 uppercase tracking-tighter">Mensal</h3>
@@ -297,7 +305,6 @@
                     </a>
                 </div>
 
-                <!-- Plano Vitalício (Novo "Mais Vendido") -->
                 <div class="plan-card bg-[#0f0f13] p-8 rounded-[32px] text-center border-2 border-emerald-500 relative overflow-hidden shadow-2xl shadow-emerald-500/10 hover:scale-[1.02] transition-all duration-300 z-10">
                     <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black tracking-widest uppercase">Mais Vendido</div>
                     <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-emerald-500"></div>
@@ -308,7 +315,7 @@
                     
                     <div class="mb-3 mt-4">
                         <span class="text-emerald-500 text-xs font-bold uppercase bg-emerald-500/10 px-3 py-1 rounded-full inline-block mb-3">Equivale a menos de 5 meses</span>
-                        <span class="text-zinc-500 text-sm line-through tracking-widest uppercase block mb-1">De R$ 847,00 /ano</span>
+                        <span class="text-zinc-500 text-sm line-through tracking-widest uppercase block mb-1">De R$ 718,80/ano</span>
                     </div>
                     
                     <div class="mb-3">
@@ -321,7 +328,7 @@
                         <li class="flex gap-2 items-center"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Tudo do plano Mensal</li>
                         <li class="flex gap-2 items-center"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Acesso Para Sempre</li>
                         <li class="flex gap-2 items-center"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Atualizações Futuras Livres</li>
-                        <li class="flex gap-2 items-center"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Bônus Robô de Histórico</li>
+                        <li class="flex gap-2 items-center"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Suporte VIP Exclusivo</li>
                     </ul>
                     
                     <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="block py-4 rounded-full bg-gradient-main text-white font-bold hover:scale-105 transition-all shadow-[0_0_20px_rgba(0,200,83,0.3)] mt-auto">
@@ -420,16 +427,15 @@
     <footer class="py-12 border-t border-white/10 bg-black">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <div class="flex items-center justify-center gap-2 mb-6">
-                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-lg flex items-center justify-center text-white">
-                    <i data-lucide="cpu" class="w-5 h-5"></i>
-                </div>
+                <!-- LOGO ADICIONADA TAMBÉM NO RODAPÉ -->
+                <img src="1000096943.png" alt="Ícone Hadassa IA" class="w-8 h-8 rounded-lg object-cover">
                 <span class="font-display font-black text-xl tracking-tighter text-white uppercase">HADASSA <span class="text-blue-500">IA</span></span>
             </div>
 
             <p class="text-zinc-500 text-sm mb-6">© 2024 HADASSA IA • Todos os direitos reservados</p>
             
             <div class="max-w-3xl mx-auto p-4 rounded-xl bg-white/[0.02] border border-white/5 text-zinc-600 text-[10px] leading-relaxed uppercase tracking-widest">
-                Aviso Legal: Negociar no mercado financeiro (Forex, Índices) envolve alto nível de risco e pode não ser adequado para todos os investidores. O Hadassa IA é uma ferramenta de automação (software), e resultados passados não são garantias de lucros futuros. Gerencie seu capital de forma responsável.
+                Aviso Legal: Negociar no mercado financeiro (Forex, Índices, B3) envolve alto nível de risco e pode não ser adequado para todos os investidores. O Hadassa IA é uma ferramenta de automação (software), e resultados passados não são garantias de lucros futuros. Gerencie seu capital de forma responsável.
             </div>
         </div>
     </footer>
